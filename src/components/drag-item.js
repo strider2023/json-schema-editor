@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import { DNDEvents, EVENTS } from "./dnd-events";
+import { DNDEvents, EVENTS } from "../utils/dnd-events";
 
 class DragItem extends LitElement {
     static styles = css`

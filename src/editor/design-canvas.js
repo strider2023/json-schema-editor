@@ -27,10 +27,9 @@ class DesignCanvas extends LitElement {
 
   firstUpdated () {
     super.firstUpdated()
-    const baseCanvas = this.shadowRoot.getElementById('base-canvas');
-    const baseCanvasSortable = Sortable.create(baseCanvas, {
+    const baseCanvasSortable = Sortable.create(this.shadowRoot.getElementById('base-canvas'), {
       group: {
-        name: 'shared'
+        name: 'shared',
       },
       animation: 150,
       onAdd: this.handleOnDesignEelemntAdd.bind(this)
@@ -38,12 +37,19 @@ class DesignCanvas extends LitElement {
   }
 
   handleOnDesignEelemntAdd (event) {
-    console.log(event.item)
+    const data = JSON.parse(event.originalEvent.dataTransfer.getData('fieldObject'));
+    console.log('onAdd data: ', data)
+    this.layout.push({...data})
+    event.item.parentNode.removeChild(event.item);
+    this.requestUpdate()
   }
 
   render () {
     return html`
       <div id="base-canvas" class="base-canvas">
+      ${this.layout.map((item) => {
+        return html`<design-element .properties=${item}/>`
+      })}
       </div>
     `;
   }

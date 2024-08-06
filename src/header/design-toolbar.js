@@ -32,10 +32,6 @@ class DesignToolbar extends LitElement {
             <nord-icon slot="start" name="interface-grid"></nord-icon>
             Layouts
           </nord-button>
-          <nord-button>
-            <nord-icon slot="start" name="text-indent-decrease"></nord-icon>
-            Decrease indent
-          </nord-button>
           <nord-dropdown size="s">
             <nord-button slot="toggle">Alignment</nord-button>
             <nord-dropdown-item>

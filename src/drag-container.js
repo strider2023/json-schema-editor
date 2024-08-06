@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { v4 as uuidv4 } from 'uuid';
-import { EVENTS } from "./dnd-events";
+import { EVENTS } from "./utils/dnd-events";
 
 class DragContainer extends LitElement {
   static styles = css`

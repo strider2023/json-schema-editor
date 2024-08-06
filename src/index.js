@@ -1,10 +1,12 @@
 export * from "@nordhealth/components";
+import { Dexie } from 'https://unpkg.com/dexie/dist/modern/dexie.mjs';
 export * from 'sortablejs';
 
+export * from "./components/drag-item";
+
 export * from "./drag-container";
-export * from "./drag-item";
 export * from "./dropzone";
-export * from "./dnd-events";
+export * from "./utils/dnd-events";
 export * from "./base-view";
 export * from "./group-view";
 export * from "./section-view";

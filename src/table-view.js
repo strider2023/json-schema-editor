@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import { EVENTS } from "./dnd-events";
+import { EVENTS } from "./utils/dnd-events";
 import { createGrid } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.min.css';
 import 'ag-grid-community/styles/ag-theme-quartz.min.css';

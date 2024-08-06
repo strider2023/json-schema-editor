@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { v4 as uuidv4 } from 'uuid';
-import { DNDEvents, EVENTS } from "./dnd-events";
+import { DNDEvents, EVENTS } from "./utils/dnd-events";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 class Dropzone extends LitElement {

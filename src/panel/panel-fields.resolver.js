@@ -1,6 +1,6 @@
 import { camelCaseToTitleCase } from "../utils";
 
-export function fieldsResolver(schema, parent) {
+export function fieldsResolver (schema, parent) {
   let fieldsList = []
   if (parent) {
     if (schema.properties && schema.properties[parent] && schema.properties[parent].type === 'object') {
@@ -8,9 +8,10 @@ export function fieldsResolver(schema, parent) {
       for (const property in nestedProperties) {
         if (nestedProperties.hasOwnProperty(property)) {
           fieldsList.push({
-            property: camelCaseToTitleCase(nestedProperties), 
-            type: camelCaseToTitleCase(schema.properties[nestedProperties].type), 
-            description: schema.properties[nestedProperties].description ?? ''
+            id: nestedProperties,
+            name: camelCaseToTitleCase(nestedProperties),
+            type: camelCaseToTitleCase(schema.properties[nestedProperties].type),
+            data: { ...schema.properties[nestedProperties] }
           })
         }
       }
@@ -19,9 +20,10 @@ export function fieldsResolver(schema, parent) {
   for (const property in schema.properties) {
     if (schema.properties.hasOwnProperty(property)) {
       fieldsList.push({
-        property: camelCaseToTitleCase(property), 
-        type: camelCaseToTitleCase(schema.properties[property].type), 
-        description: schema.properties[property].description ?? ''
+        id: property,
+        name: camelCaseToTitleCase(property),
+        type: camelCaseToTitleCase(schema.properties[property].type),
+        data: { ...schema.properties[property] }
       })
     }
   }

@@ -14,7 +14,11 @@ class AvailableLayoutsPanel extends LitElement {
     this.layouts = [
       {
         name: 'Section',
-        type: 'Single Column'
+        type: 'Single Column',
+        data: {
+          type: 'section',
+          columnCount: 1
+        }
       },
       {
         name: 'Section',

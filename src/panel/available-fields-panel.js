@@ -1,9 +1,21 @@
-import { LitElement, html } from 'lit'
+import { LitElement, html, css } from 'lit'
 import { Sortable } from 'sortablejs'
 import { fieldsResolver } from './panel-fields.resolver';
 import { PRODUCT_SCHEMA } from '../constants';
 
 class AvailableFieldsPanel extends LitElement {
+
+  static styles = css`
+      .base {
+        display: block;
+        flex-direction: row;
+        margin: 10px 0px;
+        padding: 10px;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+      }
+    `;
 
   static properties = {
     properties: { type: Array }
@@ -16,15 +28,18 @@ class AvailableFieldsPanel extends LitElement {
 
   firstUpdated () {
     super.firstUpdated()
-    const propertiesList = this.shadowRoot.getElementById('items');
-    const propertiesListSortable = Sortable.create(propertiesList, {
+    Sortable.create(this.shadowRoot.getElementById('items'), {
       group: {
         name: 'shared',
-        pull: 'clone',
+        pull: true,
         put: false
       },
+      sort: false,
       animation: 150,
-      ghostClass: 'ghost'
+      ghostClass: 'ghost',
+      setData: (dataTransfer, dragEl) => {
+        dataTransfer.setData('fieldObject', dragEl.getAttribute('property-data'))
+      }
     });
   }
 
@@ -34,11 +49,15 @@ class AvailableFieldsPanel extends LitElement {
 
   render () {
     return html`
-      <ul id="items">
+      <div id="items">
         ${this.properties.map((property) =>
-          html`<li>${property.property}</li>`
+          html`
+          <div property-data="${JSON.stringify(property)}" class="base">
+            <h3>${property.name}</h3>
+            <p>${property.type}</p>
+          </div>`
         )}
-      </ul>`
+      </div>`
   }
 }
 

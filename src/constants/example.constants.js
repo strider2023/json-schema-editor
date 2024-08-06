@@ -5,6 +5,7 @@ export const PRODUCT_SCHEMA = {
   "type": "object",
   "properties": {
     "productId": {
+      "label": "Product Id",
       "description": "The unique identifier for a product",
       "type": "string"
     },
